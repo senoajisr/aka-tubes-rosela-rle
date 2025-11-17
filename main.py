@@ -8,10 +8,10 @@ def main() -> None:
 
 def initialization():
     initialize_logging()
-    credits()
+    display_credits()
 
 
-def credits() -> None:
+def display_credits() -> None:
     logging.info("Tugas besar Analisis Kompleksitas Algoritma menggunakan algoritma RLE secara iteratif dan rekursif.")
     logging.info("Dibuat oleh tim Rosela:")
     logging.info("> 103012500136 - Senoaji Sapta Ramadhana")
