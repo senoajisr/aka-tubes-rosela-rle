@@ -3,6 +3,10 @@ import rle_recursive
 import logging
 
 def main() -> None:
+    initialization()
+
+
+def initialization():
     initialize_logging()
     credits()
 
