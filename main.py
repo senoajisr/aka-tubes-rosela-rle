@@ -1,6 +1,7 @@
 import rle_iterative
 import rle_recursive
 import logging
+from time import sleep
 
 def main() -> None:
     initialization()
@@ -19,7 +20,7 @@ def display_credits() -> None:
 
 def initialize_logging() -> None:
     format = "%(asctime)s | %(levelname)s: %(message)s"
-    logging.basicConfig(format=format, level=logging.DEBUG, datefmt="%H:%M:%S")
+    logging.basicConfig(format=format, level=logging.DEBUG)
     logging.debug("Logging initialized.")
 
 
