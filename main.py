@@ -1,14 +1,22 @@
 import rle_iterative
 import rle_recursive
 import logging
+import timeit
 
 
 def main() -> None:
     initialization()
     
     text: str = "abbcccddddeeeeeF"
-    logging.info(rle_iterative.encode(text))
-    logging.info(rle_recursive.encode(text))
+    logging.info(f"Input text \"{text}\"")
+    
+    iterative_runtime: float = timeit.timeit(lambda : rle_iterative.encode(text))
+    iterative_result: str = rle_iterative.encode(text)
+    logging.info(f"Run time for iterative {iterative_runtime} with result {iterative_result}")
+    
+    recursive_runtime: float = timeit.timeit(lambda : rle_recursive.encode(text))
+    recursive_result: str = rle_recursive.encode(text)
+    logging.info(f"Run time for recursive {recursive_runtime} with result {recursive_result}")
 
 
 def initialization():
