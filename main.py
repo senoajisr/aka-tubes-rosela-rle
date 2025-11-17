@@ -1,7 +1,7 @@
 import rle_iterative
 import rle_recursive
 import logging
-from time import sleep
+
 
 def main() -> None:
     initialization()
