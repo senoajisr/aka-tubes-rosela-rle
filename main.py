@@ -8,6 +8,7 @@ def main() -> None:
     
     text: str = "abbcccddddeeeeeF"
     logging.info(rle_iterative.encode(text))
+    logging.info(rle_recursive.encode(text))
 
 
 def initialization():
