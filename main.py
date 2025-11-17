@@ -5,6 +5,9 @@ import logging
 
 def main() -> None:
     initialization()
+    
+    text: str = "abbcccddddeeeeeF"
+    logging.info(rle_iterative.encode(text))
 
 
 def initialization():
