@@ -7,9 +7,9 @@ def main() -> None:
 
 
 def initialize_logging() -> None:
-    format = "%(asctime)s: %(message)s"
-    logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
-    logging.info("Logging initialized.")
+    format = "%(asctime)s | %(levelname)s: %(message)s"
+    logging.basicConfig(format=format, level=logging.DEBUG, datefmt="%H:%M:%S")
+    logging.debug("Logging initialized.")
 
 
 if __name__ == "__main__":
