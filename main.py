@@ -6,7 +6,10 @@ import timeit
 
 def main() -> None:
     initialization()
-    
+    single_run()
+
+
+def single_run():
     text_encode: str = "abbcccddddeeeeeF"
     text_decode: str = "a1b2c3d4e5F1"
     logging.info(f"Input text to encode is \"{text_encode}\"")
@@ -38,6 +41,8 @@ def display_credits() -> None:
     logging.info("Tugas besar Analisis Kompleksitas Algoritma menggunakan algoritma RLE secara iteratif dan rekursif.")
     logging.info("Dibuat oleh tim Rosela:")
     logging.info("> 103012500136 - Senoaji Sapta Ramadhana")
+    logging.info("> 103012580031 - Togi Samuel Simarmata")
+    logging.info("> 103012500355 - Tiara Br Siahaan")
 
 
 def initialize_logging() -> None:
