@@ -23,6 +23,10 @@ def main() -> None:
     runtime: float = timeit.timeit(lambda : rle_recursive.encode(text_encode), number=1)
     result: str = rle_recursive.encode(text_encode)
     logging.info(f"Run time for recursive RLE encode is {runtime} with result {result}")
+    
+    runtime: float = timeit.timeit(lambda : rle_recursive.decode(text_decode), number=1)
+    result: str = rle_recursive.decode(text_decode)
+    logging.info(f"Run time for recursive RLE encode is {runtime} with result {result}")
 
 
 def initialization():

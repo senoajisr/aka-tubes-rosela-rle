@@ -12,5 +12,9 @@ def encode(text: str, count: int = 1, i: int = 0) -> str:
     return text[i - 1] + str(count) + encode(text, 1, i)
 
 
-def decode() -> str:
-    pass
+def decode(text: str, i: int = 0) -> str:
+    if i >= len(text):
+        return ""
+    
+    result = text[i] * int(text[i+1])
+    return result + decode(text, i+2)
