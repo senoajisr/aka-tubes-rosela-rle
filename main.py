@@ -7,16 +7,22 @@ import timeit
 def main() -> None:
     initialization()
     
-    text: str = "abbcccddddeeeeeF"
-    logging.info(f"Input text \"{text}\"")
+    text_encode: str = "abbcccddddeeeeeF"
+    text_decode: str = "a1b2c3d4e5F1"
+    logging.info(f"Input text to encode is \"{text_encode}\"")
+    logging.info(f"Input text to decode is \"{text_decode}\"")
     
-    iterative_runtime: float = timeit.timeit(lambda : rle_iterative.encode(text))
-    iterative_result: str = rle_iterative.encode(text)
-    logging.info(f"Run time for iterative {iterative_runtime} with result {iterative_result}")
+    runtime: float = timeit.timeit(lambda : rle_iterative.encode(text_encode), number=1)
+    result: str = rle_iterative.encode(text_encode)
+    logging.info(f"Run time for iterative RLE encode is {runtime} with result {result}")
     
-    recursive_runtime: float = timeit.timeit(lambda : rle_recursive.encode(text))
-    recursive_result: str = rle_recursive.encode(text)
-    logging.info(f"Run time for recursive {recursive_runtime} with result {recursive_result}")
+    runtime: float = timeit.timeit(lambda : rle_iterative.decode(text_decode), number=1)
+    result: str = rle_iterative.decode(text_decode)
+    logging.info(f"Run time for iterative RLE decode is {runtime} with result {result}")
+    
+    runtime: float = timeit.timeit(lambda : rle_recursive.encode(text_encode), number=1)
+    result: str = rle_recursive.encode(text_encode)
+    logging.info(f"Run time for recursive RLE encode is {runtime} with result {result}")
 
 
 def initialization():

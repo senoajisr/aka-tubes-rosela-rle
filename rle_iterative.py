@@ -1,3 +1,6 @@
+import logging
+
+
 def encode(text: str) -> str:
     result: str = ''
     count = 1  
@@ -14,5 +17,10 @@ def encode(text: str) -> str:
     return result
 
 
-def decode() -> str:
-    pass
+def decode(text: str) -> str:
+    result: str = ''
+    
+    for i in range(0, len(text), 2):
+        result += text[i] * int(text[i+1])
+    
+    return result
