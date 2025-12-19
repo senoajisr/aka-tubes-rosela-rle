@@ -1,3 +1,4 @@
+import csv
 import rle_iterative
 import rle_recursive
 import logging
