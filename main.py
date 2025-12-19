@@ -10,7 +10,7 @@ def main() -> None:
 
 def example() -> None:
     generate_data.single_run()
-    generate_data.append_csv_row("datas/a_times_n.csv", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+    generate_data.append_csv_row("datas/a_times_n.csv", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"])
 
 
 def initialization():

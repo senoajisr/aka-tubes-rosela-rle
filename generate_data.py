@@ -12,7 +12,7 @@ def append_csv_row(file_path: str, row_data: list):
         logging.info(f"CSV file {file_path} does not exist, creating a new one.")
         with open(file_path, "w") as file:
             csv_writer = csv.writer(file)
-            csv_writer.writerow(["number", "text", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "encoded", "decoded", "time_taken_encode", "time_taken_decode"])
+            csv_writer.writerow(["number", "text", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "encoded", "decoded", "time_taken_encode", "time_taken_decode", "time_taken_both"])
     
     with open(file_path, "a") as file:
         csv_writer = csv.writer(file)
