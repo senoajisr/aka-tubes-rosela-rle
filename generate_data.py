@@ -5,7 +5,7 @@ import logging
 import timeit
 
 
-def append_csv_row(file_path: str, row: list):
+def append_csv_row(file_path: str, row_data: list):
     try:
         open(file_path, "r")
     except IOError:
@@ -16,7 +16,7 @@ def append_csv_row(file_path: str, row: list):
     
     with open(file_path, "a") as file:
         csv_writer = csv.writer(file)
-        csv_writer.writerow()
+        csv_writer.writerow(row_data)
 
 
 def single_run():
