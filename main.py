@@ -2,11 +2,30 @@ import rle_iterative
 import rle_recursive
 import logging
 import timeit
+import csv
+
+
+csv_file_path: str = "datas/a_times_n.csv"
 
 
 def main() -> None:
     initialization()
     single_run()
+    append_csv_row(["a", "b", "c", "d", "e", "f", "g", "h", "i"])
+
+
+def append_csv_row(row: list):
+    try:
+        open(csv_file_path, "r")
+    except IOError:
+        logging.info(f"CSV file {csv_file_path} does not exist, creating a new one.")
+        with open(csv_file_path, "w") as file:
+            csv_writer = csv.writer(file)
+            csv_writer.writerow(["number", "text", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "encoded", "decoded", "time_taken"])
+    
+    with open(csv_file_path, "a") as file:
+        csv_writer = csv.writer(file)
+        csv_writer.writerow()
 
 
 def single_run():
