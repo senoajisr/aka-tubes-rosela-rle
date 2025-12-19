@@ -4,19 +4,16 @@ import logging
 import timeit
 
 
-csv_file_path: str = "datas/a_times_n.csv"
-
-
-def append_csv_row(row: list):
+def append_csv_row(file_path: str, row: list):
     try:
-        open(csv_file_path, "r")
+        open(file_path, "r")
     except IOError:
-        logging.info(f"CSV file {csv_file_path} does not exist, creating a new one.")
-        with open(csv_file_path, "w") as file:
+        logging.info(f"CSV file {file_path} does not exist, creating a new one.")
+        with open(file_path, "w") as file:
             csv_writer = csv.writer(file)
             csv_writer.writerow(["number", "text", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "encoded", "decoded", "time_taken"])
     
-    with open(csv_file_path, "a") as file:
+    with open(file_path, "a") as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow()
 
