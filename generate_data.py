@@ -8,7 +8,7 @@ import timeit
 
 class RleType(Enum):
     ITERATIVE = 0
-    RECURSIVE = 0
+    RECURSIVE = 1
 
 
 def append_csv_row(file_path: str, row_data: list) -> None:
@@ -18,7 +18,7 @@ def append_csv_row(file_path: str, row_data: list) -> None:
         logging.info(f"CSV file {file_path} does not exist, creating a new one.")
         with open(file_path, "w") as file:
             csv_writer = csv.writer(file)
-            csv_writer.writerow(["number", "text", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "time_taken_encode", "time_taken_decode", "encoded_text", "decoded_text"])
+            csv_writer.writerow(["number", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "time_taken_encode", "time_taken_decode", "encoded_text", "text"])
     
     with open(file_path, "a") as file:
         csv_writer = csv.writer(file)
@@ -52,7 +52,11 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
         encoded_length: int = len(encoded_text)
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
         
-        row = [i, text, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode , encoded_text, decoded_text]
+        if decoded_text != text:
+            logging.error("Decoded text is not equivalent to original text.\nOriginal:\n{text}\nDecoded:\n{text}")
+            return
+        
+        row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode , encoded_text, text]
         append_csv_row(f"datas/{file_name}", row)
         logging.debug(f"generated: {row}")
 
