@@ -18,7 +18,7 @@ def append_csv_row(file_path: str, row_data: list) -> None:
         logging.info(f"CSV file {file_path} does not exist, creating a new one.")
         with open(file_path, "w") as file:
             csv_writer = csv.writer(file)
-            csv_writer.writerow(["number", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "time_taken_encode", "time_taken_decode", "encoded_text", "text"])
+            csv_writer.writerow(["number", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "time_taken_encode", "time_taken_decode", "decode_match_original", "encoded_text", "text"])
     
     with open(file_path, "a") as file:
         csv_writer = csv.writer(file)
@@ -33,6 +33,7 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
         time_taken_encode: float = 0
         time_taken_decode: float = 0
         decoded_text: str = ""
+        decode_match_original: bool = True
         
         if rle_type == RleType.ITERATIVE:
             time_taken_encode = timeit.timeit(lambda : rle_iterative.encode(text), number=1)
@@ -52,10 +53,10 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
         
         if decoded_text != text:
-            logging.error("Decoded text is not equivalent to original text.\nOriginal:\n{text}\nDecoded:\n{text}")
-            return
+            logging.warning(f"Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}")
+            decode_match_original = False
         
-        row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode , encoded_text, text]
+        row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
         append_csv_row(f"datas/{file_name}", row)
         logging.debug(f"generated: {row}")
 
