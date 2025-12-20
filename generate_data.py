@@ -27,7 +27,6 @@ def append_csv_row(file_path: str, row_data: list) -> None:
 
 def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv") -> None:
     for i in range(1, amount+1):
-        number: int = i
         text: str = character * i
         text_length: str = len(text)
         character_variation: int = len(set(text))
