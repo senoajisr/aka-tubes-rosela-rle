@@ -1,8 +1,14 @@
 import csv
+from enum import Enum
 import rle_iterative
 import rle_recursive
 import logging
 import timeit
+
+
+class RleType(Enum):
+    ITERATIVE = 0
+    RECURSIVE = 0
 
 
 def append_csv_row(file_path: str, row_data: list) -> None:
