@@ -26,6 +26,7 @@ def decode(text: str) -> str:
         if not text[i].isdigit():
             result += character * int(count)
             character=text[i]
+            count = ''
             continue
         
         count += text[i]
