@@ -5,7 +5,7 @@ import logging
 import timeit
 
 
-def append_csv_row(file_path: str, row_data: list):
+def append_csv_row(file_path: str, row_data: list) -> None:
     try:
         open(file_path, "r")
     except IOError:
@@ -19,7 +19,7 @@ def append_csv_row(file_path: str, row_data: list):
         csv_writer.writerow(row_data)
 
 
-def single_run():
+def single_run() -> None:
     text_encode: str = "abbcccddddeeeeeF"
     text_decode: str = "a1b2c3d4e5F1"
     logging.info(f"Input text to encode is \"{text_encode}\"")

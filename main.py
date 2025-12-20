@@ -13,7 +13,7 @@ def example() -> None:
     generate_data.append_csv_row("datas/a_times_n.csv", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"])
 
 
-def initialization():
+def initialization() -> None:
     initialize_logging()
     display_credits()
 
