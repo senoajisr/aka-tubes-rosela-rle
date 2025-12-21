@@ -25,6 +25,22 @@ def append_csv_row(file_path: str, row_data: list) -> None:
         csv_writer.writerow(row_data)
 
 
+def get_kbbi_words(file_path: str = "datas/kbbi.txt"):
+    try:
+        with open(file_path, "r") as file:
+            kbbi_raw: str = file.read()
+            kbbi_words: list[str] = kbbi_raw.split("\n")
+    except IOError:
+        logging.error(
+            "KBBI data in datas folder was not found."
+            + "Please download it from https://github.com/damzaky/kumpulan-kata-bahasa-indonesia-KBBI/blob/master/list_1.0.0.txt"
+            + "and add it into datas folder"
+        )
+        return []
+    
+    return kbbi_words
+
+
 def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv") -> None:
     for i in range(1, amount+1):
         text: str = character * i
