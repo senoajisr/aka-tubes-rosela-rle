@@ -41,7 +41,7 @@ def get_kbbi_words(file_path: str = "datas/kbbi.txt"):
     return kbbi_words
 
 
-def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "kbbi_words.csv"):
+def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv"):
     kbbi_words: list[str] = get_kbbi_words()
     
     for i in range(1, len(kbbi_words)+1):
