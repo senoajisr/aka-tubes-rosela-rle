@@ -41,6 +41,47 @@ def get_kbbi_words(file_path: str = "datas/kbbi.txt"):
     return kbbi_words
 
 
+def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "kbbi_words.csv"):
+    kbbi_words: list[str] = get_kbbi_words()
+    
+    for i in range(1, len(kbbi_words)+1):
+        text: str = kbbi_words[i-1]
+        text_length: str = len(text)
+        character_variation: int = len(set(text))
+        time_taken_encode: float = 0
+        time_taken_decode: float = 0
+        decoded_text: str = ""
+        decode_match_original: bool = True
+        
+        if rle_type == RleType.ITERATIVE:
+            time_taken_encode = timeit.timeit(lambda : rle_iterative.encode(text), number=1)
+            encoded_text = rle_iterative.encode(text)
+            
+            if encoded_text == None:
+                continue
+            
+            time_taken_decode = timeit.timeit(lambda : rle_iterative.decode(encoded_text), number=1)
+            decoded_text = rle_iterative.decode(encoded_text)
+        
+        if rle_type == RleType.RECURSIVE:
+            time_taken_encode = timeit.timeit(lambda : rle_recursive.encode(text), number=1)
+            encoded_text = rle_recursive.encode(text)
+            
+            time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text), number=1)
+            decoded_text = rle_recursive.decode(encoded_text)
+        
+        encoded_length: int = len(encoded_text)
+        encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
+        
+        if decoded_text != text:
+            logging.warning(f"Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}")
+            decode_match_original = False
+        
+        row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
+        append_csv_row(f"datas/{file_name}", row)
+        logging.debug(f"generated: {row}")
+
+
 def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv") -> None:
     for i in range(1, amount+1):
         text: str = character * i
