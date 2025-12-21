@@ -2,8 +2,11 @@ import logging
 
 
 def encode(text: str) -> str:
+    if text == "":
+        return
+    
     result: str = ''
-    count = 1  
+    count = 1
     
     for i in range(1, len(text)):
         if text[i] == text[i - 1]: 
