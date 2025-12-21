@@ -25,16 +25,16 @@ def append_csv_row(file_path: str, row_data: list) -> None:
         csv_writer.writerow(row_data)
 
 
-def get_kbbi_words(file_path: str = "datas/kbbi.txt"):
+def get_kbbi_words(file_path: str = "data/kbbi.txt"):
     try:
         with open(file_path, "r") as file:
             kbbi_raw: str = file.read()
             kbbi_words: list[str] = kbbi_raw.split("\n")
     except IOError:
         logging.error(
-            "KBBI data in datas folder was not found."
+            "KBBI data in data folder was not found."
             + "Please download it from https://github.com/damzaky/kumpulan-kata-bahasa-indonesia-KBBI/blob/master/list_1.0.0.txt"
-            + "and add it into datas folder"
+            + "and add it into data folder"
         )
         return []
     
@@ -78,7 +78,7 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "
             decode_match_original = False
         
         row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
-        append_csv_row(f"datas/{file_name}", row)
+        append_csv_row(f"data/{file_name}", row)
         logging.debug(f"generated: {row}")
 
 
@@ -114,7 +114,7 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
             decode_match_original = False
         
         row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
-        append_csv_row(f"datas/{file_name}", row)
+        append_csv_row(f"data/{file_name}", row)
         logging.debug(f"generated: {row}")
 
 
