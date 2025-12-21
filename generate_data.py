@@ -67,8 +67,11 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "
             time_taken_encode = timeit.timeit(lambda : rle_recursive.encode(text), number=1)
             encoded_text = rle_recursive.encode(text)
             
-            time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text), number=1)
-            decoded_text = rle_recursive.decode(encoded_text)
+            if encoded_text == None:
+                continue
+            
+            time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text, encoded_text[0]), number=1)
+            decoded_text = rle_recursive.decode(encoded_text, encoded_text[0])
         
         encoded_length: int = len(encoded_text)
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
@@ -103,8 +106,8 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
             time_taken_encode = timeit.timeit(lambda : rle_recursive.encode(text), number=1)
             encoded_text = rle_recursive.encode(text)
             
-            time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text), number=1)
-            decoded_text = rle_recursive.decode(encoded_text)
+            time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text, encoded_text[0]), number=1)
+            decoded_text = rle_recursive.decode(encoded_text, encoded_text[0])
         
         encoded_length: int = len(encoded_text)
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
