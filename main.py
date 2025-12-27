@@ -28,6 +28,7 @@ def display_credits() -> None:
 
 def initialize_logging() -> None:
     format = "%(asctime)s | %(levelname)s: %(message)s"
+    sys.setrecursionlimit(11000)
     logging.basicConfig(format=format, level=logging.DEBUG)
     logging.debug("Logging initialized.")
 
