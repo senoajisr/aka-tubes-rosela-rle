@@ -1,11 +1,25 @@
 import generate_data
 import logging
 import csv
+import sys
+
+import rle_iterative
+import rle_recursive
 
 
 def main() -> None:
     initialization()
-    example()
+    #example()
+
+    #generate_data.character_times_n(rle_type=generate_data.RleType.ITERATIVE, file_name="iterative_a_times_n.csv", amount=10000)
+    #generate_data.process_kbbi_words(generate_data.RleType.ITERATIVE, "iterative_kbbi_words.csv")
+    #generate_data.character_times_n(rle_type=generate_data.RleType.RECURSIVE, file_name="recursive_a_times_n.csv", amount=10000)
+    #generate_data.process_kbbi_words(generate_data.RleType.RECURSIVE, "recursive_kbbi_words.csv")
+
+    print(rle_iterative.encode('aaabbb'))
+    print(rle_iterative.decode('a3b3'))
+    print(rle_recursive.encode('aaabbb'))
+    print(rle_recursive.decode('a3b3'))
 
 
 def example() -> None:
