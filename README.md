@@ -5,3 +5,8 @@ Tugas besar Analisis Kompleksitas Algoritma menggunakan algoritma RLE secara ite
 - 103012580031 - Togi Samuel Simarmata
 - 103012500355 - Tiara Br Siahaan
 
+# Setup
+1. Buatlah folder `data` di dalam folder yang sama dengan `main.py`
+1. Jalankan `python3 main.py`
+
+Note: apabila terjadi masalah dengan Python seperti `unsupported operand type(s) for |` dapat upgrade versi Python untuk proyek ini yaitu versi 3.12.3. Apabila error dan versi masih sama setelah diupgrade kemungkinan karena $PATH yang ada di environment variable masih menggunakan direktori Python yang lama.
