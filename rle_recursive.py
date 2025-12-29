@@ -9,8 +9,7 @@ def encode(text: str, count: int = 1, i: int = 1) -> str:
         return text[-1] + str(count)
     
     if text[i] == text[i - 1]: 
-        count+=1
-        return encode(text, count, i+1)
+        return encode(text, count+1, i+1)
     
     return text[i - 1] + str(count) + encode(text, 1, i+1)
 
