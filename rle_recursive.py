@@ -1,5 +1,5 @@
 def guarded_encode(text: str, count: int = 1, i: int = 0) -> str|None:
-    if text == "":
+    if text == '':
         return None
     
     return encode(text, count, i)
@@ -14,7 +14,7 @@ def encode(text: str, count: int = 1, i: int = 1) -> str:
     return text[i - 1] + str(count) + encode(text, 1, i+1)
 
 
-def decode(text: str, character: str = "", count: str = "", i: int = 1) -> str:
+def decode(text: str, character: str = '', count: str = '', i: int = 1) -> str:
     if i >= len(text):
         result = character * int(count)
         return result

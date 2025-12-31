@@ -13,35 +13,35 @@ class RleType(Enum):
 
 def append_csv_row(file_path: str, row_data: list) -> None:
     try:
-        open(file_path, "r")
+        open(file_path, 'r')
     except IOError:
-        logging.info(f"CSV file {file_path} does not exist, creating a new one.")
-        with open(file_path, "w") as file:
+        logging.info(f'CSV file {file_path} does not exist, creating a new one.')
+        with open(file_path, 'w') as file:
             csv_writer = csv.writer(file)
-            csv_writer.writerow(["number", "text_length", "character_variation", "encoded_length", "encoded_efficiency", "time_taken_encode", "time_taken_decode", "decode_match_original", "encoded_text", "text"])
+            csv_writer.writerow(['number', 'text_length', 'character_variation', 'encoded_length', 'encoded_efficiency', 'time_taken_encode', 'time_taken_decode', 'decode_match_original', 'encoded_text', 'text'])
     
-    with open(file_path, "a") as file:
+    with open(file_path, 'a') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(row_data)
 
 
-def get_kbbi_words(file_path: str = "data/kbbi.txt"):
+def get_kbbi_words(file_path: str = 'data/kbbi.txt'):
     try:
-        with open(file_path, "r") as file:
+        with open(file_path, 'r') as file:
             kbbi_raw: str = file.read()
-            kbbi_words: list[str] = kbbi_raw.split("\n")
+            kbbi_words: list[str] = kbbi_raw.split('\n')
     except IOError:
         logging.error(
-            "KBBI data in data folder was not found."
-            + "Please download it from https://github.com/damzaky/kumpulan-kata-bahasa-indonesia-KBBI/blob/master/list_1.0.0.txt"
-            + "and add it into data folder"
+            'KBBI data in data folder was not found.'
+            + 'Please download it from https://github.com/damzaky/kumpulan-kata-bahasa-indonesia-KBBI/blob/master/list_1.0.0.txt'
+            + 'and add it into data folder'
         )
         return []
     
     return kbbi_words
 
 
-def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv"):
+def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = 'example.csv'):
     kbbi_words: list[str] = get_kbbi_words()
     
     for i in range(1, len(kbbi_words)+1):
@@ -50,7 +50,7 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "
         character_variation: int = len(set(text))
         time_taken_encode: float = 0
         time_taken_decode: float = 0
-        decoded_text: str = ""
+        decoded_text: str = ''
         decode_match_original: bool = True
         
         if rle_type == RleType.ITERATIVE:
@@ -77,22 +77,22 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = "
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
         
         if decoded_text != text:
-            logging.warning(f"Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}")
+            logging.warning(f'Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}')
             decode_match_original = False
         
         row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
-        append_csv_row(f"data/{file_name}", row)
-        logging.debug(f"generated: {row}")
+        append_csv_row(f'data/{file_name}', row)
+        logging.debug(f'generated: {row}')
 
 
-def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleType = RleType.ITERATIVE, file_name: str = "example.csv") -> None:
+def character_times_n(character: str = 'a', amount: int = 1000, rle_type: RleType = RleType.ITERATIVE, file_name: str = 'example.csv') -> None:
     for i in range(1, amount+1):
         text: str = character * i
         text_length: str = len(text)
         character_variation: int = len(set(text))
         time_taken_encode: float = 0
         time_taken_decode: float = 0
-        decoded_text: str = ""
+        decoded_text: str = ''
         decode_match_original: bool = True
         
         if rle_type == RleType.ITERATIVE:
@@ -113,32 +113,32 @@ def character_times_n(character: str = "a", amount: int = 1000, rle_type: RleTyp
         encoded_efficiency: float = (1 - (encoded_length / text_length)) * 100
         
         if decoded_text != text:
-            logging.warning(f"Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}")
+            logging.warning(f'Decoded text is not equivalent to original text.\nOriginal:\n{text}\nEncoded:\n{encoded_text}\nDecoded:\n{decoded_text}')
             decode_match_original = False
         
         row = [i, text_length, character_variation, encoded_length, encoded_efficiency, time_taken_encode, time_taken_decode, decode_match_original, encoded_text, text]
-        append_csv_row(f"data/{file_name}", row)
-        logging.debug(f"generated: {row}")
+        append_csv_row(f'data/{file_name}', row)
+        logging.debug(f'generated: {row}')
 
 
 def single_run() -> None:
-    text_encode: str = "abbcccddddeeeeeF"
-    text_decode: str = "a1b2c3d4e5F1"
-    logging.info(f"Input text to encode is \"{text_encode}\"")
-    logging.info(f"Input text to decode is \"{text_decode}\"")
+    text_encode: str = 'abbcccddddeeeeeF'
+    text_decode: str = 'a1b2c3d4e5F1'
+    logging.info(f'Input text to encode is \'{text_encode}\'')
+    logging.info(f'Input text to decode is \'{text_decode}\'')
     
     runtime: float = timeit.timeit(lambda : rle_iterative.encode(text_encode), number=1)
     result: str = rle_iterative.encode(text_encode)
-    logging.info(f"Run time for iterative RLE encode is {runtime} with result {result}")
+    logging.info(f'Run time for iterative RLE encode is {runtime} with result {result}')
     
     runtime: float = timeit.timeit(lambda : rle_iterative.decode(text_decode), number=1)
     result: str = rle_iterative.decode(text_decode)
-    logging.info(f"Run time for iterative RLE decode is {runtime} with result {result}")
+    logging.info(f'Run time for iterative RLE decode is {runtime} with result {result}')
     
     runtime: float = timeit.timeit(lambda : rle_recursive.encode(text_encode), number=1)
     result: str = rle_recursive.encode(text_encode)
-    logging.info(f"Run time for recursive RLE encode is {runtime} with result {result}")
+    logging.info(f'Run time for recursive RLE encode is {runtime} with result {result}')
     
     runtime: float = timeit.timeit(lambda : rle_recursive.decode(text_decode), number=1)
     result: str = rle_recursive.decode(text_decode)
-    logging.info(f"Run time for recursive RLE decode is {runtime} with result {result}")
+    logging.info(f'Run time for recursive RLE decode is {runtime} with result {result}')

@@ -2,8 +2,8 @@ import logging
 
 
 def encode(text: str) -> str:
-    if text == "":
-        return
+    if text == '':
+        return ''
     
     result: str = ''
     count = 1
