@@ -1,8 +1,9 @@
-def guarded_encode(text: str, count: int = 1, i: int = 0) -> str|None:
+def guarded_encode(text: str, count: int = 1, i: int = 1) -> str|None:
     if text == '':
         return None
     
     return encode(text, count, i)
+
 
 def encode(text: str, count: int = 1, i: int = 1) -> str:
     if len(text) == i:
