@@ -57,7 +57,7 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = '
             time_taken_encode = timeit.timeit(lambda : rle_iterative.encode(text), number=1)
             encoded_text = rle_iterative.encode(text)
             
-            if encoded_text == None:
+            if encoded_text == '':
                 continue
             
             time_taken_decode = timeit.timeit(lambda : rle_iterative.decode(encoded_text), number=1)
@@ -67,7 +67,7 @@ def process_kbbi_words(rle_type: RleType = RleType.ITERATIVE, file_name: str = '
             time_taken_encode = timeit.timeit(lambda : rle_recursive.guarded_encode(text), number=1)
             encoded_text = rle_recursive.guarded_encode(text)
             
-            if encoded_text == None:
+            if encoded_text == '':
                 continue
             
             time_taken_decode = timeit.timeit(lambda : rle_recursive.decode(encoded_text, encoded_text[0]), number=1)
